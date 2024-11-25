@@ -68,7 +68,7 @@ while(True):
     #print to frames window converted to string format
     cv2.putText(gray, 'FPS: ' + str(int(fps)), (300, 25), cv2.FONT_HERSHEY_SIMPLEX, 0.65, (0, 0, 255), 2, cv2.LINE_AA)
 
-    # #FPS for color image 
+    #FPS for color image 
     cv2.putText(frame, 'FPS: ' + str(int(fps)), (300, 25), cv2.FONT_HERSHEY_SIMPLEX, 0.65, (0, 0, 255), 2, cv2.LINE_AA)
 
     #show frames
