@@ -35,11 +35,11 @@ while(True):
     #minMaxLoc to locate brightest (and darkest) pixel in the grey scale video 
     min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(gray)
 
-    # #initialize variables for brightest pixel and its location
+    #initialize variables for brightest pixel and its location
     maximum_value = 0
     maximum_location = (0, 0)
 
-    # #use nested for-loop going through pixel by pixel to find the brightest pixel
+    #use nested for-loop going through pixel by pixel to find the brightest pixel
     for i in range(0, gray.shape[0]):
         for j in range(0, gray.shape[1]):
             if gray[i, j] > maximum_value:
@@ -53,7 +53,7 @@ while(True):
     cv2.circle(gray, max_loc, 10, (0, 0, 255), 2)
 
     #compute and find the reddest pixel in each frame defined by the HSV color space with hue=red, saturation = 100 
-    # and value = 100
+    #and value = 100
     hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV) #convert BGR to HSV
     lower_red = np.array([0, 150, 150])
     upper_red = np.array([0, 200, 255])
