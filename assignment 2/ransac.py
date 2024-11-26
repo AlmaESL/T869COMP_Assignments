@@ -13,7 +13,7 @@ def ransac(edge_pixels, n_iterations = 100, neighborhood_size = 100, sample_size
     #repeat the ransac algorithm number of iteration times 
     for i in range(n_iterations):
 
-        #sample 2 random points
+        #sample 2 random pixel coordinates from the edge pixels
         random_points = subsampled_pixels[np.random.choice(subsampled_pixels.shape[0], 2, replace=False)]
         (x1, y1), (x2, y2) = random_points
 
@@ -21,18 +21,18 @@ def ransac(edge_pixels, n_iterations = 100, neighborhood_size = 100, sample_size
         if x1 == x2:
             continue
 
-        #compute line between the 2 points y = kx + m
+        #compute line between the 2 pixel coordinates y = kx + m
         k = (y2 - y1) / (x2 - x1)
         m = y1 - k * x1
 
-        #compute the distance to all edge pixels from the line
+        #compute the distance to all edge pixel coordinates from the line
         distances = np.abs(k * subsampled_pixels[:, 0] - subsampled_pixels[:, 1] + m) / np.sqrt(k**2 + 1)
 
-        #compute number of inliers  ie pixels within the given neighborhood of the line
+        #compute number of inliers ie pixel coordinates within the given neighborhood of the line
         inliers = subsampled_pixels[distances < neighborhood_size]
 
         #update the best model if the number of inliers is higher than previous best -> we want to cover as many pixels 
-        #as possible from the line 
+        #as possible with the line 
         if len(inliers) > max_inliers:
             best_model = (k, m)
             best_inliers = inliers
