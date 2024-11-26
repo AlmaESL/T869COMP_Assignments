@@ -48,7 +48,7 @@ def draw_ransac_line(frame, model, width):
     #slope and intersection of the ransac model (line)
     slope, intersection = model
 
-    #find start and end point for the line of the ransac model, limited to the frame width
+    #find start and end points for the line of the ransac model, limited to the frame width -> y = kx + m
     x_start, x_end = 0, width
     y_start = int(slope * x_start + intersection)
     y_end = int(slope * x_end + intersection)
