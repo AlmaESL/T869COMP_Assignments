@@ -40,14 +40,14 @@ while(True):
     cv2.putText(frame, 'FPS: ' + str(int(fps)), (300, 25), cv2.FONT_HERSHEY_SIMPLEX, 0.65, (0, 0, 255), 2, cv2.LINE_AA)
 
     #find edges with canny edge detection
-    edges = cv2.Canny(frame, 100, 200)
+    edges = cv2.Canny(frame, 70, 200)
 
     #take all x and y coordinates of all edge pixels and put them in an array - edges are binary, 1 by canny 
     edge_pixels = np.column_stack(np.where(edges > 0))
     edge_pixels = edge_pixels[:, ::-1] #swap columns to get x,y 
 
     #perform ransac algorithm on edge pixels 
-    best_model, best_inliers = ransac(edge_pixels, 5000, 5000, 1)
+    best_model, best_inliers = ransac(edge_pixels, 10000, 10000, 3)
 
     if best_model is not None:
         slope, intersection = best_model
