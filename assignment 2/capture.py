@@ -43,7 +43,8 @@ def main():
         #perform ransac algorithm on edge pixels 
         best_model, best_inliers = ransac(edges_array, 10000, 10000, 3)
 
-        if best_model is not None:
+        if best_model is not None: 
+            #draw line from ransac model, use frame width to limit line
             draw_ransac_line(frame, best_model, frame.shape[1])
     
         #show edges frames 
